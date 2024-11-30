@@ -81,4 +81,10 @@ public class UserController {
 		User user = service.makeUserAdmin(email, passcode);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
+
+	@PostMapping("/details")
+	public ResponseEntity<UserDTO> getUserDetails(@RequestBody UserDTO userDto) throws InvalidCredentialException {
+		UserDTO userDetails = service.getUserDetailsByEmail(userDto.getEmail());
+		return new ResponseEntity<>(userDetails, HttpStatus.OK);
+	}
 }

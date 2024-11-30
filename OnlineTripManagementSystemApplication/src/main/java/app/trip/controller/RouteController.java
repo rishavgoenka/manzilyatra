@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import app.trip.exceptions.AccessDeniedException;
 import app.trip.exceptions.InvalidRouteException;
 import app.trip.models.Route;
+import app.trip.models.RouteBookingDTO;
 import app.trip.services.RouteService;
 
 
@@ -67,9 +68,14 @@ public class RouteController {
 	@DeleteMapping("/deleteRoute")
 	public ResponseEntity<Route> removeRoute(@RequestParam Integer routeId, @RequestParam String authKey) throws InvalidRouteException, AccessDeniedException {
 		Route deletedRoute = routeService.removeRoute(routeId, authKey);
-		
-		return new ResponseEntity<Route>(deletedRoute,HttpStatus.OK);
+
+		return new ResponseEntity<Route>(deletedRoute, HttpStatus.OK);
 	}
-	
-	
+
+		// New endpoint to book a route
+		@PostMapping("/bookRoute")
+		public ResponseEntity<Route> bookRoute(@RequestBody RouteBookingDTO routeBookingDTO) throws InvalidRouteException {
+			Route bookedRoute = routeService.bookRoute(routeBookingDTO);
+			return new ResponseEntity<>(bookedRoute, HttpStatus.CREATED);
+		}
 }

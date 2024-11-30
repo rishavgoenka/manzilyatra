@@ -26,7 +26,7 @@ import lombok.Data;
 @Entity @Table(name = "Packages")
 public class Packages {
 	
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Id
 	private Integer packageId;
 	
 	@Column(length = 45) @NotNull @NotBlank @NotEmpty

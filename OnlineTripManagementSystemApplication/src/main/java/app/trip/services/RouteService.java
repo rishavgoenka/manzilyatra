@@ -5,6 +5,7 @@ import java.util.List;
 import app.trip.exceptions.AccessDeniedException;
 import app.trip.exceptions.InvalidRouteException;
 import app.trip.models.Route;
+import app.trip.models.RouteBookingDTO;
 
 public interface RouteService {
 	
@@ -20,5 +21,7 @@ public interface RouteService {
 	public Route searchRoute(Integer routeId) throws InvalidRouteException;
 	
 	public List<Route> viewRouteList() throws InvalidRouteException;
+
+	Route bookRoute(RouteBookingDTO routeBookingDTO) throws InvalidRouteException;
 	
 }

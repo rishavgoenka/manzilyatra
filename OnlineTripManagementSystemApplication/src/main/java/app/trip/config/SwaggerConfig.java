@@ -32,7 +32,7 @@ public class SwaggerConfig {
 				"REST API for Online Trip Mangement System created using Spring, Spring Boot, Hibernate, JPA, Maven for Backend Project.",
 				"1.0",
 				"Terms of Service",
-				new Contact("Kunal Ladhani", "https://kunal-ladhani.github.io/", "k.ladhani1@gmail.com"),
+				new Contact("Rishav Goenka", "", "goenkarishav09@@gmail.com"),
 				"License of APIs",
 				"API License URL",
 				Collections.EMPTY_LIST);

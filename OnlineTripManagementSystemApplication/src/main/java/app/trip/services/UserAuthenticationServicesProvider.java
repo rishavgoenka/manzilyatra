@@ -120,5 +120,24 @@ public class UserAuthenticationServicesProvider implements UserAuthenticationSer
 		if(!user.isPresent())throw new InvalidCredentialException("User doesn't exits with Id "+userId);
 		userRepo.delete(user.get());
 		return user.get();
-	}	
+	}
+
+	@Override
+	public UserDTO getUserDetailsByEmail(String email) throws InvalidCredentialException {
+		Optional<User> userOptional = userRepo.findByEmail(email);
+		if (!userOptional.isPresent()) {
+			throw new InvalidCredentialException("User not found with email: " + email);
+		}
+
+		User user = userOptional.get();
+		// Return user details without the password
+		return new UserDTO(
+				user.getUserId(),
+				user.getEmail(),
+				user.getName(),
+				user.getMobile(),
+				user.getAddress(),
+				user.getUserType()
+		);
+	}
 }

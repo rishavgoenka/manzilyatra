@@ -1,18 +1,17 @@
 package app.trip.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import app.trip.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.trip.exceptions.AccessDeniedException;
 import app.trip.exceptions.InvalidRouteException;
-import app.trip.models.Bus;
-import app.trip.models.CurrentUserLoginSession;
-import app.trip.models.Route;
-import app.trip.models.Travel;
 import app.trip.repository.PackageRepository;
 import app.trip.repository.RouteRepository;
 import app.trip.repository.SessionRepository;
@@ -163,5 +162,28 @@ public class RouteServiceImpl implements RouteService {
 		
 		return searchedRoutes;
 	}
-	
+
+	@Override
+	public Route bookRoute(RouteBookingDTO routeBookingDTO) throws InvalidRouteException {
+		// Validate fields
+		if (routeBookingDTO.getRouteFrom() == null ||
+				routeBookingDTO.getRouteTo() == null ||
+				routeBookingDTO.getUserId() == null ||
+				routeBookingDTO.getDateOfJourney() == null) {
+			throw new InvalidRouteException("All fields, including dateOfJourney, are required.");
+		}
+
+		// Map DTO to Entity
+		Route route = new Route();
+		route.setRoutefrom(routeBookingDTO.getRouteFrom());
+		route.setRouteTo(routeBookingDTO.getRouteTo());
+		route.setDateOfJourney(routeBookingDTO.getDateOfJourney().toLocalDate());
+		route.setDepartureTime(routeBookingDTO.getDateOfJourney()); // Use the same or derive departure time
+		route.setArrivalTime(routeBookingDTO.getDateOfJourney().plusHours(2)); // Derive arrival time
+		route.setPickUpPoint("Default Pickup Point"); // Set a default or dynamic pick-up point
+		route.setFare(1000); // Set fare dynamically if needed
+
+		// Save the route
+		return routeRepo.save(route);
+	}
 }

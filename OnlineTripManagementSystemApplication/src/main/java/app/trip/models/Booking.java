@@ -22,7 +22,7 @@ import lombok.Data;
 @Entity @Table(name = "Booking")
 public class Booking {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer bookingId;
 	private String bookingType;
 	private String description;
