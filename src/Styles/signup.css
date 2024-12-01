@@ -37,7 +37,7 @@ body {
   max-width: 400px;
   padding: 30px;
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 7px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -125,3 +125,4 @@ body {
     font-size: 14px;
   }
 }
+/* Signup.css */
