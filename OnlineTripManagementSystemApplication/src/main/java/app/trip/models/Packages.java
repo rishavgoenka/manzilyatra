@@ -27,6 +27,7 @@ import lombok.Data;
 public class Packages {
 	
 	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer packageId;
 	
 	@Column(length = 45) @NotNull @NotBlank @NotEmpty

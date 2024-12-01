@@ -34,7 +34,7 @@ public class Booking {
 	private List<User> users = new ArrayList<>();
 	
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "package_f_id", referencedColumnName = "packageId")
     private Packages packages;
 	
