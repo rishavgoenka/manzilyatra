@@ -41,8 +41,72 @@ form{ width: 100%; }
 
     .container.active .form-box{ right: 50%; }
 
-    .form-box.register{ visibility: hidden; }
+    .form-box.register{ visibility: visible; }
         .container.active .form-box.register{ visibility: visible; }
+
+/* Existing styles remain the same, with these additions/modifications */
+
+.form-box .error {
+    color: #ff4d4d;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  .form-box .success {
+    color: #4CAF50;
+    background-color: #e6f3e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-2px); }
+    40%, 60% { transform: translateX(2px); }
+  }
+  
+  .btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  .forgot-password {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .forgot-password a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-password a:hover {
+    color: #f36f09;
+    text-decoration: underline;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .form-box, .toggle-box {
+      width: 100%;
+    }
+  }
 
 .input-box{
     position: relative;

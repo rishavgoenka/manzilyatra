@@ -1,0 +1,58 @@
+/* Logout.css */
+.container {
+    position: relative;
+    width: 85vw;
+    height: 550px;
+    background: #fff;
+    margin: 100px 60px 30px 60px;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin: -10px 0;
+  }
+  
+  .success-message {
+    font-size: 24px;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+  
+  .btnL {
+    width: 160px;
+    height: 46px;
+    background: #7494ec;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .btn:hover {
+    background: #5a7dbf;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+    .container {
+      height: calc(100vh - 40px);
+    }
+  }
+  

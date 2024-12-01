@@ -14,7 +14,7 @@ function Footer() {
         <div className={Classes.socialLink}>
           <p>+8801305282768</p>
           <p>manzilyatra@gmail.com</p>
-          <a href="https://web.facebook.com/">
+          {/* <a href="https://web.facebook.com/">
             <img src={facebook} alt="" />
           </a>
           <a href="https://www.linkedin.com/">
@@ -22,7 +22,7 @@ function Footer() {
           </a>
           <a href="https://github.com/">
             <img src={github} alt="" />
-          </a>
+          </a> */}
         </div>
 
         <div className={Classes.footerLogo}>

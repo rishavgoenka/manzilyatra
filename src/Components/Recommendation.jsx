@@ -1,161 +1,88 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../Styles/Recommendation.css";
 
-import Destination1 from "../assets/Destination1.png";
-import Destination2 from "../assets/Destination2.png";
-import Destination3 from "../assets/Destination3.png";
-import Destination4 from "../assets/Destination4.png";
-import Destination5 from "../assets/Destination5.png";
-import Destination6 from "../assets/Destination6.png";
-import info1 from "../assets/info1.png";
-import info2 from "../assets/info2.png";
-import info3 from "../assets/info3.png";
-
 function Recommendation() {
-  const [active, setActive] = useState();
+  const [packages, setPackages] = useState([]);
+  const [imageUrls, setImageUrls] = useState({});
+  const navigate = useNavigate();
 
-  const data = [
-    {
-      image: Destination4,
-      title: "New Zealand",
-      subTitle: "New Zealand is an island country in the",
-      cost: "24,100",
-      duration: "Approx 1 night trip",
-    },
-    {
-      image: Destination5,
-      title: "Bora Bora",
-      subTitle: "Bora Bora is a small South Pacific island northwest of",
-      cost: "95,400",
-      duration: "Approx 2 night 2 day trip",
-    },
-    {
-      image: Destination6,
-      title: "London",
-      subTitle: "London, the capital of England and the United",
-      cost: "38,800",
-      duration: "Approx 3 night 2 day trip",
-    },
-    {
-      image: Destination1,
-      title: "Singapore",
-      subTitle: "Singapore, officialy thr Republic of Singapore, is a",
-      cost: "38,800",
-      duration: "Approx 2 night trip",
-    },
-    {
-      image: Destination2,
-      title: "Thailand",
-      subTitle: "Thailand is a Southeast Asia country. It's known for",
-      cost: "54,200",
-      duration: "Approx 2 night trip",
-    },
-    {
-      image: Destination3,
-      title: "Paris",
-      subTitle: "Paris, France's capital, is a major European city and a",
-      cost: "45,500",
-      duration: "Approx 2 night trip",
-    },
-    {
-      image: Destination4,
-      title: "New Zealand",
-      subTitle: "New Zealand is an island country in the",
-      cost: "24,100",
-      duration: "Approx 1 night trip",
-    },
-    {
-      image: Destination5,
-      title: "Bora Bora",
-      subTitle: "Bora Bora is a small South Pacific island northwest of",
-      cost: "95,400",
-      duration: "Approx 2 night 2 day trip",
-    },
-    {
-      image: Destination6,
-      title: "London",
-      subTitle: "London, the capital of England and the United",
-      cost: "38,800",
-      duration: "Approx 3 night 2 day trip",
-    },
-    {
-      image: Destination4,
-      title: "New Zealand",
-      subTitle: "New Zealand is an island country in the",
-      cost: "24,100",
-      duration: "Approx 1 night trip",
-    },
-    {
-      image: Destination5,
-      title: "Bora Bora",
-      subTitle: "Bora Bora is a small South Pacific island northwest of",
-      cost: "95,400",
-      duration: "Approx 2 night 2 day trip",
-    },
-    {
-      image: Destination6,
-      title: "London",
-      subTitle: "London, the capital of England and the United",
-      cost: "38,800",
-      duration: "Approx 3 night 2 day trip",
-    },
-  ];
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const response = await axios.get("http://localhost:8888/packages");
+        const limitedPackages = response.data.slice(0, 6);
+        setPackages(limitedPackages);
+        
+        const imageUrls = {};
+        for (const pkg of limitedPackages) {
+          try {
+            // More explicit import with error handling
+            const imagePath = `../assets/${pkg.packageId}.png`;
+            const imageModule = await import(/* @vite-ignore */ imagePath);
+            imageUrls[pkg.packageId] = imageModule.default;
+          } catch (error) {
+            console.warn(`Image not found for package ${pkg.packageId}`);
+            imageUrls[pkg.packageId] = "https://via.placeholder.com/300x200";
+          }
+        }
 
-  const packages = [
-    "The Weekend Break",
-    "The Package Holiday",
-    "The Group Tour",
-    "Long Term Slow Travel",
-  ];
+        setImageUrls(imageUrls);
+      } catch (error) {
+        console.error("Error fetching packages:", error);
+      }
+    };
+
+    fetchPackages();
+  }, []);
+
+  const handlePackageClick = (pkg) => {
+    navigate(`/booking/${pkg.packageId}`, {
+      state: pkg,
+    });
+  };
 
   return (
     <section id="recommendation" className="recommendation">
-      <div className="title">
-        <h1>Recommend</h1>
-        <div className="CategoryBar">
-          <ul>
-            {packages.map((pkg, index) => {
-              return (
-                <li
-                  key={index}
-                  className={active === index + 1 ? "Active" : ""}
-                  onClick={() => setActive(index + 1)}>
-                  {pkg}
-                </li>
-              );
-            })}
-          </ul>
+      <div className="recommendation-container">
+        <div className="title">
+          <h1>Recommended Packages</h1>
+          <p className="subtitle">Discover our most popular travel experiences</p>
         </div>
-      </div>
 
-      <div className="recommendationBox">
-        {data.map((item) => {
-          return (
-            <div className="box">
-              <div className="image">
-                <img src={item.image} alt="image" />
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.subTitle}</p>
-
-              <div className="price">
-                <div>
-                  <img src={info1} alt="image" />
-                  <img src={info2} alt="image" />
-                  <img src={info3} alt="image" />
+        <div className="recommendationBox">
+          {packages.map((pkg) => (
+            <div
+              className="box"
+              key={pkg.packageId}
+              onClick={() => handlePackageClick(pkg)}
+            >
+              <div className="image-container">
+                <div className="image-wrapper">
+                  <img
+                    src={imageUrls[pkg.packageId]}
+                    alt={pkg.packageName}
+                  />
                 </div>
-
-                <p>${item.cost}</p>
               </div>
-
-              <div className="details">
-                <p>1500 kms</p>
-                <p>{item.duration}</p>
+              <div className="package-content">
+                <div className="package-header">
+                  <span className="package-id">Package #{pkg.packageId}</span>
+                  <h3 className="package-name">{pkg.packageName}</h3>
+                </div>
+                <p className="package-description">{pkg.packageDescription}</p>
+                <div className="price">
+                  <span className="price-label">Cost:</span>
+                  <span className="price-value">Rs. {pkg.packageCost}</span>
+                </div>
+                <div className="package-cta">
+                  <span>Book Now</span>
+                </div>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </section>
   );

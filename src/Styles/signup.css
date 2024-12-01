@@ -1,0 +1,127 @@
+/* Color Variables */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #0056b3;
+  --background-color: #f4f7fc;
+  --white: #ffffff;
+  --error-color: #ff4d4d;
+  --text-color: #333;
+}
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Container Styles */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Form Box */
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-box h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+/* Input Boxes */
+.input-box {
+  margin-bottom: 15px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input-box input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Redirect Link */
+.redirect-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.redirect-link:hover {
+  text-decoration: none;
+  color: darkblue;
+}
+
+/* Error Messages */
+.error,
+.error-description {
+  color: var(--error-color);
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form-box {
+    padding: 20px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .input-box input {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+}
