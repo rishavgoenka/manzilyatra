@@ -35,8 +35,14 @@
     -- Configure the backend
     - Update the `application.properties` file with your database configurations and server settings.
 
-    --  Run the backend server
-   -- Start the Spring Boot application.
+    --  Run the backend server by
+    ```bash
+    cd server/OnlineTripManagementSystemApplication
+    ```
+   -- Start the Spring Boot application by
+   ```bash
+   mvn spring-boot:run
+   ```
    -- By default, the backend API endpoints will be available at [http://localhost:8888](http://localhost:8888).
    -- You can use postman or swagger UI using http://localhost:8888/swagger-ui/# to manage backend services.
    
