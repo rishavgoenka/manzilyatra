@@ -75,7 +75,7 @@
 
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.  
 
-![ER Diagram - DB Schema](dbSchema.JPG)  
+![ER Diagram - DB Schema](https://github.com/rishavgoenka/manzilyatra/blob/main/dbSchemaDFD.JPG)  
 
 ## Contributing
 
