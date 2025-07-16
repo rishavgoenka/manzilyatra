@@ -1,0 +1,199 @@
+/* AdminManage.module.css */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --light-background: #f8f9fa;
+  --dark-text: #333;
+}
+
+.adminManageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--light-background);
+  min-height: 100vh;
+}
+
+/* Package Creation Section */
+.packageCreateSection {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.packageCreateSection h2 {
+  color: var(--dark-text);
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.packageCreateSection form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.packageCreateSection input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.packageCreateSection input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.packageCreateSection button {
+  grid-column: span 2;
+  padding: 12px 20px;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.packageCreateSection button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Bookings Table Section */
+.bookingsTableSection {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.bookingsTableSection h2 {
+  color: var(--dark-text);
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.bookingsTableSection table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bookingsTableSection thead {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.bookingsTableSection th,
+.bookingsTableSection td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bookingsTableSection tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.bookingsTableSection tbody tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+
+/* Delete Button */
+.bookingsTableSection button {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.bookingsTableSection button:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #a71d2a;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+}
+
+/* Error State */
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.errorContainer h2 {
+  color: var(--danger-color);
+  margin-bottom: 20px;
+}
+
+.errorContainer button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.errorContainer button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .packageCreateSection form {
+    grid-template-columns: 1fr;
+  }
+
+  .packageCreateSection button {
+    grid-column: span 1;
+  }
+
+  .bookingsTableSection table {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .adminManageContainer {
+    padding: 10px;
+  }
+
+  .bookingsTableSection table {
+    font-size: 0.8rem;
+  }
+}
